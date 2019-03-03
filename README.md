@@ -1,10 +1,4 @@
-# mern-stack
-MongoDB, Expressjs, React/Redux, Nodejs
-
-## clone or download and send me PR(please)
-```terminal
-$ git clone https://github.com/amazingandyyy/mern-stack.git
-```
+# core
 
 # Usage(make it run on your machine)
 - You need make the both the following two run
@@ -52,23 +46,3 @@ react-router-dom: ^4.2.2 | mongoose: ^4.7.4
 redux: ^3.7.2 | morgan: ^1.7.0
 redux-form: ^6.4.1 |
 redux-thunk: ^2.1.0 |
-
-# Screenshots of this project
-
-User visit public and Home page
-![User visit public and Home page](http://i.imgur.com/ORCGHHY.png)
-
-User can sign in or sign up
-![User can sign in or sign up](http://i.imgur.com/rrmbU5I.png)
-
-After signing in user can go to account route and make request to token-protected API endpoint
-![After signing in user can go to account route](http://i.imgur.com/FzLB51u.png)
-
-## BUGs or comments
-[Create new Issues](https://github.com/amazingandyyy/mern-stack/issues)
-
-## Author
-[Amazingandyyy](https://amazingandyyy.com)
-
-### License
-[MIT](https://github.com/amazingandyyy/eventbrite-api/blob/master/LICENSE)

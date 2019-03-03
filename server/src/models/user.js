@@ -17,14 +17,10 @@ const userSchema = new mongoose.Schema({
         default: false
     },
     password: String,
-    phone: {
-        number: {
-            type: String
-        },
-        verified: {
-            type: Boolean,
-            default: false
-        }
+    ethAddr: {
+        type: String,
+        unique: true,
+        default: false
     }
 })
 
