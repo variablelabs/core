@@ -1,3 +1,14 @@
-node_modules
-.vscode
+node_modules/
 package-lock.json
+bundle.js
+npm-debug.log
+
+/.idea
+/public
+
+.env
+.passport.js
+.DS_Store
+
+build/
+dist/
