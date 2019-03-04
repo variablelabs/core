@@ -8,6 +8,6 @@ if(process.env.NODE_ENV != 'production'){
 module.exports = {
   jwt_secret: process.env.JWT_SECRET || 'unsafe_jwt_secret',
   mongoose: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/db_variablelabs_dev'
+    uri: process.env.MONGODB_URI || 'mongodb://[username:password@]host1[:port1][,...hostN[:portN]]][/[database][?options]]'
   },
 }
