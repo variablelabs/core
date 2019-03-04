@@ -1,5 +1,3 @@
-# core
-
 # Usage(make it run on your machine)
 - You need make the both the following two run
 
