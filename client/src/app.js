@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
-import { DrizzleProvider } from 'drizzle-react';
 
 import App from './components/app';
 import Home from './components/home';
@@ -16,18 +15,13 @@ import Signout from './components/auth/signout'
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
-import xToken from './contracts/xToken.json';
 
 import '../style/style.scss'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers)
 const token = localStorage.getItem('auth_jwt_token');
-const options = {
-  contracts: [
-    xToken
-  ]
-}
+
 
 // if we have a token, consider the user to be signed in
 if (token) {
@@ -36,7 +30,6 @@ if (token) {
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType="noslash">
-    <DrizzleProvider options={options}>
       <App>
         <Switch>
           <Route exact path="/" component= {Home} />
@@ -47,7 +40,6 @@ ReactDOM.render(
           <Route path="/signout" component= {Signout} />
         </Switch>
       </App>
-    </DrizzleProvider>
     </HashRouter>
   </Provider>
   , document.getElementById('root'));
