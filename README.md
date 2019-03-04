@@ -4,7 +4,7 @@ $ npm run server
 ```
 
 ```terminal
-$ npm run server
+$ npm run client
 ```
 
 ## Requirements
