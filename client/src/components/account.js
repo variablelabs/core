@@ -24,7 +24,7 @@ class Account extends Component {
           Account
         </h4>
         <div className='card-body'>
-        <p className="text-muted">Server status: {status} ☀</p>
+        <p className="text-muted">Server status: {status}</p>
           {profile && this.renderProfileForm()}
         </div>
         </div>
