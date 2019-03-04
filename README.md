@@ -1,19 +1,25 @@
-# Usage(make it run on your machine)
-- You need make the both the following two run
+# Usage
+```terminal
+$ npm run server
+```
 
-## Prerequirements
+```terminal
+$ npm run server
+```
+
+## Requirements
 - [MongoDB](https://gist.github.com/nrollr/9f523ae17ecdbb50311980503409aeb3)
 - [Node](https://nodejs.org/en/download/) ^8.0.0
 - [npm](https://nodejs.org/en/download/package-manager/)
 
-## Client-side usage(PORT: 3000)
+## Client-side usage(PORT:3000)
 ```terminal
 $ cd client
 $ npm i
 $ npm run dev
 ```
 
-## Server-side usage(PORT: 8000)
+## Server-side usage(PORT:8000)
 (You need to add a JWT_SECRET in .env to connect to MongoDB -> make it run -> check your terminal for instructions
 )
 ```terminal
