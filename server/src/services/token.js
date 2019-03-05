@@ -1,5 +1,5 @@
 import jwt from 'jwt-simple';
-import config from '../config/config';
+import config from '../config';
 
 export default {
     generateToken: function (user) {

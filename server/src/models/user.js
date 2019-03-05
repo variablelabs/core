@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
     name: {
         first: String,
         last: String,
-        required: true
     },
     email: {
         type: String,
@@ -21,8 +20,7 @@ const userSchema = new mongoose.Schema({
     ethAddr: {
         type: String,
         unique: true,
-        default: false,
-        required: true
+        default: false
     }
 })
 
@@ -45,8 +43,8 @@ userSchema.pre('save', function(next){
 // Make use of methods for comparedPassword
 userSchema.methods.comparedPassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, good){
-        if (err ) {  cb(err);}
-        cb(null, good? this:false);
+        if (err ) { return cb(err)};
+        cb(null, good);
     })
 }
 

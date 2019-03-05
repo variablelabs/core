@@ -6,9 +6,7 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import routers from './routes';
-import config from './config/config';
-import passport from './config/passportConfig';
-import session from 'express-session';
+import config from './config';
 
 if(!process.env.JWT_SECRET) {
     const err = new Error('No JWT_SECRET in env variable');
@@ -28,16 +26,6 @@ app.use(morgan('dev'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/', routers);
-
-//passport
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true
-  }))
-  app.use(passport.initialize());
-  app.use(passport.session());
-  
 
 app.use((err, req, res, next) => {
     console.log('Error:', err.message);

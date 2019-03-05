@@ -4,6 +4,8 @@
   "description": "CRUD in MongoDB, Express, React/Redux, Node",
   "main": "index.js",
   "scripts": {
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
     "test": "eslint --fix src/",
     "precommit": "npm test",
     "prepush": "npm test",
@@ -17,8 +19,6 @@
   "keywords": [
     "react"
   ],
-  "author": "Amazingandyyy <amazingandyyy@gmail.com> (Andy Chen)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/amazingandyyy/mern-stack/issues"
   },
