@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {tryConnect, getUserProfile, updateUserProfile} from '../actions';
 import CenterCard363 from './centerCard363';
+import { drizzleConnect } from 'drizzle-react';
+import LoadingContainer from './loading/loadingContainer';
 
 class Account extends Component {
   constructor(){
@@ -23,10 +25,12 @@ class Account extends Component {
         <h4 className="card-header">
           Account
         </h4>
+        <LoadingContainer>
         <div className='card-body'>
         <p className="text-muted">Server status: {status}</p>
           {profile && this.renderProfileForm()}
         </div>
+        </LoadingContainer>
         </div>
       </CenterCard363>
     );
