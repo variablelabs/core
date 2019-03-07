@@ -8,7 +8,11 @@ import {
 
 export default ({ accounts }) => (
   <div>
-  <strong>Total Supply: </strong>
     <AccountData accountIndex="0" units="ether" precision="3" />
+    <ContractData
+      contract="xToken"
+      method="balanceOf"
+      methodArgs={[accounts[0]]}
+    />
   </div>
 );

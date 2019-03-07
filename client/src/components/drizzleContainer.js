@@ -4,8 +4,7 @@ import TransferTokens from "./transferTokens";
 const mapStateToProps = state => {
   return {
     accounts: state.accounts,
-    SimpleStorage: state.contracts.SimpleStorage,
-    TutorialToken: state.contracts.TutorialToken,
+    xToken: state.contracts.xToken,
     drizzleStatus: state.drizzleStatus,
   };
 };
