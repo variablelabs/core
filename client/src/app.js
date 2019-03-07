@@ -4,11 +4,13 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
-import { DrizzleProvider } from 'drizzle-react';
+import { DrizzleProvider } from "drizzle-react";
+import { LoadingContainer } from "drizzle-react-components";
 
 import App from './components/app';
 import Home from './components/home';
 import Public from './components/public';
+import TransferTokens from './components/transferTokens';
 import Account from './components/account';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
@@ -23,7 +25,7 @@ import '../style/style.scss'
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers)
 const token = localStorage.getItem('auth_jwt_token');
-const options = {contracts: [xToken]}
+const options = { contracts: [xToken] };
 
 // if we have a token, consider the user to be signed in
 if (token) {
@@ -32,18 +34,22 @@ if (token) {
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType="noslash">
-    <DrizzleProvider options={options}>
       <App>
         <Switch>
           <Route exact path="/" component= {Home} />
           <Route path="/public" component= {Public} />
+          <DrizzleProvider options={options}>
+          <LoadingContainer>
+            <Route path="/transferTokens" component= {RequireAuth(TransferTokens)} />
+          </ LoadingContainer>
+          </DrizzleProvider>
+
           <Route path="/account" component= {RequireAuth(Account)} />
           <Route path="/signin" component= {Signin} />
           <Route path="/signup" component= {Signup} />
           <Route path="/signout" component= {Signout} />
         </Switch>
       </App>
-      </DrizzleProvider>
     </HashRouter>
   </Provider>
   , document.getElementById('root'));
