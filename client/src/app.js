@@ -5,12 +5,11 @@ import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 import { DrizzleProvider } from "drizzle-react";
-import { LoadingContainer } from "drizzle-react-components";
 
 import App from './components/app';
 import Home from './components/home';
 import Public from './components/public';
-import DrizzleContainer from './components/drizzleContainer';
+import TransferTokensContainer from './components/transferTokens/transferTokensContainer';
 import Account from './components/account';
 import Signin from './components/auth/signin';
 import Signup from './components/auth/signup';
@@ -34,22 +33,19 @@ if (token) {
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType="noslash">
+    <DrizzleProvider options={options}>
       <App>
         <Switch>
           <Route exact path="/" component= {Home} />
           <Route path="/public" component= {Public} />
-          <DrizzleProvider options={options}>
-          <LoadingContainer>
-            <Route path="/transferTokens" component= {RequireAuth(DrizzleContainer)} />
-          </LoadingContainer>
-          </DrizzleProvider>
-
+          <Route path="/transferTokens" component= {RequireAuth(TransferTokensContainer)} />
           <Route path="/account" component= {RequireAuth(Account)} />
           <Route path="/signin" component= {Signin} />
           <Route path="/signup" component= {Signup} />
           <Route path="/signout" component= {Signout} />
         </Switch>
       </App>
+      </DrizzleProvider>
     </HashRouter>
   </Provider>
   , document.getElementById('root'));
