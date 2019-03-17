@@ -93,10 +93,12 @@ export default {
                     first: req.body.firstName, 
                     last: req.body.lastName
                 }
+                 
             };
             delete newProfile.email;
             delete newProfile.phone;
             delete newProfile.password;
+
             
             User.findByIdAndUpdate(userId, newProfile, {new: true})
             .then(newUser=>{

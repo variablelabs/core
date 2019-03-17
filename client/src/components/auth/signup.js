@@ -64,6 +64,18 @@ class Signup extends Component {
                             required/>
                     </div>
                     <div className="form-group">
+                        <label>EthAddr:</label>
+                        <Field
+                            name="ethAddr"
+                            type="text"
+                            component="input"
+                            className="form-control form-control-lg"
+                            placeholder="0x00000000000000"
+                            required
+
+                        />
+                    </div>
+                    <div className="form-group">
                         <label>Password:</label>
                         <Field
                             type='password'
