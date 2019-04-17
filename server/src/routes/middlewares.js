@@ -13,7 +13,7 @@ export default {
         .exec((err, user) => {
           if (err || !user) {
               return res.status(404).send(err || {
-                  error: 'middleware User not found!!!'
+                  error: 'middleware User not found.'
               });
           }
           delete user.password;
