@@ -34,10 +34,30 @@ class Signup extends Component {
                     <div className="card-body">
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div className="form-group">
+                        <label>First name:</label>
+                        <Field
+                            name="firstName"
+                            type='text'
+                            component="input"
+                            className="form-control form-control-lg"
+                            placeholder="First Name"
+                            required/>
+                    </div>
+                    <div className="form-group">
+                        <label>Last name:</label>
+                        <Field
+                            name="lastName"
+                            type='text'
+                            component="input"
+                            className="form-control form-control-lg"
+                            placeholder="Last Name"
+                            required/>
+                    </div>
+                    <div className="form-group">
                         <label>Email:</label>
                         <Field
                             name="email"
-                            type="email"
+                            type='email'
                             component="input"
                             className="form-control form-control-lg"
                             placeholder="sample@email.com"
