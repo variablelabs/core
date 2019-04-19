@@ -29,14 +29,16 @@ export function signUserIn(data) {
             })
             .catch(error => {
                 console.log(error);
-                dispatch({type: AUTH_ERROR, payload: 'Server Error, try later.'})
+                //how do I put the http error code and o/p from post function here??
+                dispatch({type: AUTH_ERROR, payload: 'Server error'})
             });
     }
 }
 
 export function signUserUp(userObj) {
     return function (dispatch) {
-        // Submit email/password to server
+        // Submit email/password to serverx
+        userObj.ethAddr = window.ethereum.selectedAddress;
         axios
             .post(`/signup`, userObj)
             .then(res => {
