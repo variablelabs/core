@@ -96,6 +96,8 @@ class Account extends Component {
             required
             />
       </div>
+
+
       {dirty && <div className="form-group">
         <label>Password:</label>
         <Field
@@ -124,7 +126,8 @@ function mapStateToProps({auth, user}) {
       initialValues: {
         email: user.profile.email,
         firstName: user.profile.name.first,
-        lastName: user.profile.name.last
+        lastName: user.profile.name.last,
+        ethAddr: user.profile.ethAddr
       },
       updateProfileFailMsg: user.updateProfileFailMsg
   }:{
