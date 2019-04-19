@@ -31,21 +31,8 @@ const userSchema = new mongoose.Schema({
     default: false
   }
 });
-userSchema.methods.delete(function(cb) {
-  if (this.isDeleted == true) {
-    userSchema.remove({ username: this.username }, cb);
-  } else {
-    return cb(err);
-  }
-});
 
-userSchema.methods.verifyEmail(function() {
-  this.emailVerified = true;
-});
-userSchema.methods.getAddr(function(addr)
-{
-    this.ethAddr=addr;
-});
+
 
 userSchema.pre("save", function(next) {
   // get access to user model, then we can use user.email, user.password
