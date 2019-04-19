@@ -3,31 +3,15 @@ import bcrypt from "bcrypt-nodejs";
 
 // Define the model
 const userSchema = new mongoose.Schema({
-  name: {
-    first: String,
-    last: String
-  },
-  username: {
-    type: String,
-    unique: true
-  },
   email: {
     type: String,
     unique: true,
     lowercase: true
   },
-  emailVerified: {
-    type: Boolean,
-    default: false
-  },
   password: String,
   ethAddr: {
     type: String,
     unique: true,
-    default: false
-  },
-  isDeleted: {
-    type: Boolean,
     default: false
   }
 });

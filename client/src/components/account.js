@@ -57,31 +57,7 @@ class Account extends Component {
     const {handleSubmit, dirty, updateProfileFailMsg} = this.props;
     return (
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <div className="form-group">
-          <label>First Name:</label>
-          <Field
-            disabled={!editting}
-            type= 'text'
-            name="firstName"
-            component="input"
-            className="form-control form-control-lg"
-            placeholder="First Name"
-            required
-            />
-      </div>
 
-      <div className="form-group">
-        <label>Last Name:</label>
-        <Field
-          disabled={!editting}
-          type= 'text'
-          name="lastName"
-          component="input"
-          className="form-control form-control-lg"
-          placeholder="Last Name"
-          required
-        />
-      </div>
 
       <div className="form-group">
         <label>Email:</label>
@@ -90,6 +66,19 @@ class Account extends Component {
             readOnly
             type= 'email'
             name="email"
+            component="input"
+            className="form-control form-control-lg"
+            placeholder="sample@email.com"
+            required
+            />
+      </div>
+     < div className="form-group">
+        <label>EthAddr:</label>
+        <Field
+            disabled
+            readOnly
+            type= 'string'
+            name="ethAddr"
             component="input"
             className="form-control form-control-lg"
             placeholder="sample@email.com"
@@ -125,8 +114,6 @@ function mapStateToProps({auth, user}) {
       profile: user.profile,
       initialValues: {
         email: user.profile.email,
-        firstName: user.profile.name.first,
-        lastName: user.profile.name.last,
         ethAddr: user.profile.ethAddr
       },
       updateProfileFailMsg: user.updateProfileFailMsg
