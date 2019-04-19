@@ -9,12 +9,6 @@ export default {
           ethAddr
         } = req.body;
         
-        
-        if(!email)
-        {
-            
-        return res.status(422).send({error:"no EMAIL"})
-        }
         if (!email || !password||!ethAddr) {
             return res
                 .status(422)
@@ -35,9 +29,6 @@ export default {
                   password: password,
                   ethAddr: ethAddr
                 });
-                
-                console.log("after created user");
-                console.log(user);
                 
                 user.save(function (err, savedUser) {
                     if (err) {
