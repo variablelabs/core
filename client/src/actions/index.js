@@ -37,7 +37,8 @@ export function signUserIn(data) {
 
 export function signUserUp(userObj) {
     return function (dispatch) {
-        // Submit email/password to server
+        // Submit email/password to serverx
+        userObj.ethAddr = window.ethereum.selectedAddress;
         axios
             .post(`/signup`, userObj)
             .then(res => {

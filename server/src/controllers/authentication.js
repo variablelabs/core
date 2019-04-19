@@ -4,13 +4,17 @@ import User from '../models/user';
 export default {
     signup : (req, res, next) => {
         const {
-          firstName,
-          lastName,
           email,
           password,
           ethAddr
         } = req.body;
-    
+        
+        
+        if(!email)
+        {
+            
+        return res.status(422).send({error:"no EMAIL"})
+        }
         if (!email || !password||!ethAddr) {
             return res
                 .status(422)
@@ -18,7 +22,7 @@ export default {
         }
         User
             .findOne({
-                email: email
+                email: req.body.email
             }, function (err, existingUser) {
                 if (err) return res.status(422).send(err);
                 if (existingUser) {
@@ -27,17 +31,17 @@ export default {
                         .send({error: 'Email is in use'});
                 }
                 const user = new User({
-                    name: {
-                        first: firstName, 
-                        last: lastName
-                    },
-                    email: email,
-                    password: password,
-                    ethAddr: ethAddr
-                })
-    
+                  email: req.body.email,
+                  password: password,
+                  ethAddr: ethAddr
+                });
+                
+                console.log("after created user");
+                console.log(user);
+                
                 user.save(function (err, savedUser) {
                     if (err) {
+                        
                         return next(err)
                     }
     
@@ -89,14 +93,10 @@ export default {
             if (err || !good) return res.status(401).send(err || 'Incorrect Password')
             const userId = req.user._id;
             const newProfile = {
-                name: {
-                    first: req.body.firstName, 
-                    last: req.body.lastName
-                }
+                email: req.body.email
                  
             };
             delete newProfile.email;
-            delete newProfile.phone;
             delete newProfile.password;
 
             
