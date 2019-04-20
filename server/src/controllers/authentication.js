@@ -3,16 +3,20 @@ import User from '../models/user';
 
 export default {
     signup : (req, res, next) => {
-        const {
+        var {
           email,
           password,
+          ethAddr1,
           ethAddr
         } = req.body;
-        
-        if (!email || !password||!ethAddr) {
+        if(!ethAddr1)
+        {
+            ethAddr1=ethAddr;
+        }
+        if (!email || !password) {
             return res
                 .status(422)
-                .send({error: 'You must provide email , password and ethAddr'});
+                .send({error: 'You must provide email , password'});
         }
         User
             .findOne({
@@ -27,7 +31,7 @@ export default {
                 const user = new User({
                   email: req.body.email,
                   password: password,
-                  ethAddr: ethAddr
+                  ethAddr: ethAddr1
                 });
                 
                 user.save(function (err, savedUser) {
@@ -35,7 +39,6 @@ export default {
                         
                         return next(err)
                     }
-    
                     res.json({
                         success: true,
                         token: token.generateToken(savedUser)
@@ -75,20 +78,14 @@ export default {
 
     updateProfile: (req, res, next) => {
 
-        if (!emailVerified) {
-          return res
-            .status(422)
-            .send({ error: "Email Not verified" });
-        }
         req.user.comparedPassword(req.body.password, (err, good) => {
             if (err || !good) return res.status(401).send(err || 'Incorrect Password')
             const userId = req.user._id;
             const newProfile = {
+                ethAddr: req.body.ethAddr,
                 email: req.body.email
                  
             };
-            delete newProfile.email;
-            delete newProfile.password;
 
             
             User.findByIdAndUpdate(userId, newProfile, {new: true})

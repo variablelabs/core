@@ -26,53 +26,73 @@ class Signup extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <CenterCard363>
-                <div className='card'>
-                <h4 className="card-header">
-                    Sign Up
-                </h4>
-                    <div className="card-body">
-                <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                    <div className="form-group">
-                        <label>Email:</label>
-                        <Field
-                            name="email"
-                            type="email"
-                            component="input"
-                            className="form-control form-control-lg"
-                            placeholder="sample@email.com"
-                            required/>
-                    </div>
-                    <div className="form-group">
-                        <label>Password:</label>
-                        <Field
-                            type='password'
-                            name="password"
-                            component="input"
-                            className="form-control form-control-lg"
-                            placeholder="your password"
-                            required
-                        />
-                    </div>
-                    
-                    <div className="form-group">
-                        <label>Comfirm Password:</label>
-                        <Field
-                            type='password'
-                            name="password2"
-                            component="input"
-                            className="form-control form-control-lg"
-                            placeholder="your password again"
-                            required/>
-                    </div>
-                    {this.renderAlert()}
-                    <div style={{'paddingTop': '30px'}}>
-                        <button type="submit" className="btn btn-lg btn-light btn-block">Sign Up</button>
-                    </div>
+          <CenterCard363>
+            <div className="card">
+              <h4 className="card-header">Sign Up</h4>
+              <div className="card-body">
+                <form
+                  onSubmit={handleSubmit(
+                    this.handleFormSubmit.bind(this)
+                  )}
+                >
+                  <div className="form-group">
+                    <label>Email:</label>
+                    <Field
+                      name="email"
+                      type="email"
+                      component="input"
+                      className="form-control form-control-lg"
+                      placeholder="sample@email.com"
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Ethereum Address:</label>
+                    <Field
+                      name="ethAddr1"
+                      type="text"
+                      component="input"
+                      className="form-control form-control-lg"
+                      placeholder={window.ethereum.selectedAddress}
+                      //required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Password:</label>
+                    <Field
+                      type="password"
+                      name="password"
+                      component="input"
+                      className="form-control form-control-lg"
+                      placeholder="your password"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Comfirm Password:</label>
+                    <Field
+                      type="password"
+                      name="password2"
+                      component="input"
+                      className="form-control form-control-lg"
+                      placeholder="your password again"
+                      required
+                    />
+                  </div>
+                  {this.renderAlert()}
+                  <div style={{ paddingTop: "30px" }}>
+                    <button
+                      type="submit"
+                      className="btn btn-lg btn-light btn-block"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
                 </form>
-                </div>
-                </div>
-            </CenterCard363>
+              </div>
+            </div>
+          </CenterCard363>
         );
     }
 }
@@ -93,5 +113,5 @@ function mapStateToProps({auth}) {
 
 export default connect(mapStateToProps, {signUserUp})(reduxForm({
     form: 'signup',
-    validate 
+        validate    
 })(Signup));

@@ -11,9 +11,18 @@ class Account extends Component {
       editting: false
     }
   }
+  
   componentWillMount() {
     this.props.tryConnect();
     this.props.getUserProfile();
+    window.onload = function() {
+      if (!window.location.hash) {
+        window.location = window.location + "#loaded";
+        window.location.reload();
+      }
+    };
+    
+    //window.location.reload();
   }
   render() {
     let {status, profile} = this.props;
@@ -33,6 +42,7 @@ class Account extends Component {
   }
   handleFormSubmit(d){
     this.props.updateUserProfile(d)
+    
   }
   switchEditting() {
     this.setState({editting: !this.state.editting})
@@ -56,14 +66,14 @@ class Account extends Component {
     const {editting} = this.state;
     const {handleSubmit, dirty, updateProfileFailMsg} = this.props;
     return (
+
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 
 
       <div className="form-group">
         <label>Email:</label>
         <Field
-            disabled
-            readOnly
+            disabled={!editting}
             type= 'email'
             name="email"
             component="input"
@@ -75,8 +85,7 @@ class Account extends Component {
      < div className="form-group">
         <label>EthAddr:</label>
         <Field
-            disabled
-            readOnly
+            disabled={!editting}
             type= 'string'
             name="ethAddr"
             component="input"
@@ -126,4 +135,5 @@ function mapStateToProps({auth, user}) {
 
 export default connect(mapStateToProps, {tryConnect, getUserProfile, updateUserProfile})(reduxForm({
   form: 'profileUpdate',
+
 })(Account));
