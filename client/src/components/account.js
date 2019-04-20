@@ -11,9 +11,18 @@ class Account extends Component {
       editting: false
     }
   }
+  
   componentWillMount() {
     this.props.tryConnect();
     this.props.getUserProfile();
+    window.onload = function() {
+      if (!window.location.hash) {
+        window.location = window.location + "#loaded";
+        window.location.reload();
+      }
+    };
+    
+    //window.location.reload();
   }
   render() {
     let {status, profile} = this.props;
@@ -33,6 +42,7 @@ class Account extends Component {
   }
   handleFormSubmit(d){
     this.props.updateUserProfile(d)
+    
   }
   switchEditting() {
     this.setState({editting: !this.state.editting})
@@ -56,38 +66,14 @@ class Account extends Component {
     const {editting} = this.state;
     const {handleSubmit, dirty, updateProfileFailMsg} = this.props;
     return (
-      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-        <div className="form-group">
-          <label>First Name:</label>
-          <Field
-            disabled={!editting}
-            type= 'text'
-            name="firstName"
-            component="input"
-            className="form-control form-control-lg"
-            placeholder="First Name"
-            required
-            />
-      </div>
 
-      <div className="form-group">
-        <label>Last Name:</label>
-        <Field
-          disabled={!editting}
-          type= 'text'
-          name="lastName"
-          component="input"
-          className="form-control form-control-lg"
-          placeholder="Last Name"
-          required
-        />
-      </div>
+      <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+
 
       <div className="form-group">
         <label>Email:</label>
         <Field
-            disabled
-            readOnly
+            disabled={!editting}
             type= 'email'
             name="email"
             component="input"
@@ -96,6 +82,20 @@ class Account extends Component {
             required
             />
       </div>
+     < div className="form-group">
+        <label>EthAddr:</label>
+        <Field
+            disabled={!editting}
+            type= 'string'
+            name="ethAddr"
+            component="input"
+            className="form-control form-control-lg"
+            placeholder="sample@email.com"
+            required
+            />
+      </div>
+
+
       {dirty && <div className="form-group">
         <label>Password:</label>
         <Field
@@ -123,8 +123,7 @@ function mapStateToProps({auth, user}) {
       profile: user.profile,
       initialValues: {
         email: user.profile.email,
-        firstName: user.profile.name.first,
-        lastName: user.profile.name.last
+        ethAddr: user.profile.ethAddr
       },
       updateProfileFailMsg: user.updateProfileFailMsg
   }:{
@@ -136,4 +135,5 @@ function mapStateToProps({auth, user}) {
 
 export default connect(mapStateToProps, {tryConnect, getUserProfile, updateUserProfile})(reduxForm({
   form: 'profileUpdate',
+
 })(Account));
