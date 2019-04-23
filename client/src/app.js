@@ -18,13 +18,14 @@ import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
 import { AUTH_USER } from './actions/types';
 import xToken from './contracts/xToken.json';
+import VariableLabsEscrow from './contracts/VariableLabsEscrow.json';
 
 import '../style/style.scss'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers)
 const token = localStorage.getItem('auth_jwt_token');
-const options = { contracts: [xToken] };
+const options = { contracts: [xToken, VariableLabsEscrow] };
 
 // if we have a token, consider the user to be signed in
 if (token) {
