@@ -54,6 +54,7 @@ class Signup extends Component {
                       component="input"
                       className="form-control form-control-lg"
                       placeholder={window.ethereum.selectedAddress}
+                      disabled = {true}
                       //required
                     />
                   </div>

@@ -33,7 +33,7 @@ class Account extends Component {
           Account
         </h4>
         <div className='card-body'>
-        {/* <p className="text-muted">Server status: {status}</p> */}
+        { <p className="text-muted">Server status: {status}</p> }
           {profile && this.renderProfileForm()}
         </div>
         </div>
@@ -66,54 +66,60 @@ class Account extends Component {
     const {editting} = this.state;
     const {handleSubmit, dirty, updateProfileFailMsg} = this.props;
     return (
-
       <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-
-
-      <div className="form-group">
-        <label>Email:</label>
-        <Field
+        <div className="form-group">
+          <label>Email:</label>
+          <Field
             disabled={!editting}
-            type= 'email'
+            type="email"
             name="email"
             component="input"
             className="form-control form-control-lg"
             placeholder="sample@email.com"
             required
-            />
-      </div>
-     < div className="form-group">
-        <label>EthAddr:</label>
-        <Field
-            disabled={!editting}
-            type= 'string'
+          />
+        </div>
+        <div className="form-group">
+          <label>EthAddr:</label>
+          <Field
+            disabled={true}
+            type="string"
             name="ethAddr"
             component="input"
             className="form-control form-control-lg"
             placeholder="sample@email.com"
             required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>Balance:</label>
+            
+        </div>
+
+        {dirty && (
+          <div className="form-group">
+            <label>Password:</label>
+            <Field
+              type="password"
+              name="password"
+              component="input"
+              className={
+                updateProfileFailMsg
+                  ? "form-control form-control-lg is-invalid"
+                  : "form-control form-control-lg"
+              }
+              placeholder="your password"
+              required
             />
-      </div>
-
-
-      {dirty && <div className="form-group">
-        <label>Password:</label>
-        <Field
-          type= 'password'
-          name="password"
-          component="input"
-          className={(updateProfileFailMsg)?"form-control form-control-lg is-invalid":"form-control form-control-lg"}
-          placeholder="your password"
-          required
-        />
-        {(updateProfileFailMsg) && <div className="invalid-feedback">
-          {updateProfileFailMsg}
-        </div>}
-      </div>}
-      <div style={{'paddingTop': '30px'}}>
-        {this.renderButtons()}
-      </div>
-    </form>);
+            {updateProfileFailMsg && (
+              <div className="invalid-feedback">{updateProfileFailMsg}</div>
+            )}
+          </div>
+        )}
+        <div style={{ paddingTop: "30px" }}>{this.renderButtons()}</div>
+      </form>
+    );
   }
 }
 
