@@ -35,7 +35,7 @@ export function signUserIn(data) {
       .catch(error => {
         console.log(error);
         //how do I put the http error code and o/p from post function here??
-        dispatch({ type: AUTH_ERROR, payload: "Server error" });
+        dispatch({ type: AUTH_ERROR, payload: error.response.data.error });
       });
   };
 }

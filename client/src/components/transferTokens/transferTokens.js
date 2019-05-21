@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
-import { LoadingContainer } from "drizzle-react-components";
+/* eslint-disable react/display-name */
+/* eslint-disable import/no-duplicates */
+import React from 'react';
+// eslint-disable-next-line import/no-duplicates
+import { LoadingContainer } from 'drizzle-react-components';
 import CenterCard363 from '../centerCard363';
 import {
   AccountData,
   ContractData,
   ContractForm,
 } from "drizzle-react-components";
+import { tryConnect, getUserProfile, updateUserProfile } from "../../actions";
 
 export default ({ accounts }) => (
   <div>

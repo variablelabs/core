@@ -59,7 +59,7 @@ export default {
         if (existingUser) {
           existingUser.comparedPassword(password, function(err, good) {
             if (err || !good) {
-              return res.status(401).send(err || "User not found");
+              return res.status(401).send(err || {error:"Wrong Password"});
             }
 
             res.send({
