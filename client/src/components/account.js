@@ -33,7 +33,7 @@ class Account extends Component {
           Account
         </h4>
         <div className='card-body'>
-        {/* <p className="text-muted">Server status: {status}</p> */}
+        { <p className="text-muted">Server status: {status}</p> }
           {profile && this.renderProfileForm()}
         </div>
         </div>
@@ -85,7 +85,7 @@ class Account extends Component {
      < div className="form-group">
         <label>EthAddr:</label>
         <Field
-            disabled={!editting}
+            disabled={true}
             type= 'string'
             name="ethAddr"
             component="input"
